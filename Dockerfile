@@ -6,7 +6,7 @@ COPY . /app
 RUN apt-get install -y python3-venv
 RUN pip install -r requirements.txt
 RUN pip install flask_restful
-RUN export FLASK_APP=main.py
+RUN export FLASK_APP=app.py
 EXPOSE 5000
 ENTRYPOINT [ "python3" ]
 CMD ["main.py"]
