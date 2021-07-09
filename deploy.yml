@@ -16,7 +16,7 @@ spec:
      spec: 
        containers: 
            - name: flaskapp
-             image: rtxverma123/travis
+             image: rtxverma123/flaskblog
              ports: 
                - containerPort: 5000
          
