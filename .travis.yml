@@ -1,26 +1,53 @@
-language: bash
+language: python
 
 sudo: required
 
 services: 
   - docker
 
-# before_install:
-#   - curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-#   - chmod +x kubectl && sudo mv kubectl /usr/local/bin/kubectl
-#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-#   - docker build -t rtxverma123/flaskblog .
-#   - docker push rtxverma123/flaskblog
-  
-install:
-  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-  - chmod +x ./kubectl
-  - sudo mv ./kubectl /usr/local/bin/kubectl
-  - mkdir ${HOME}/.kube
-  - echo "$KUBE_CONFIG" | base64 --decode > ${HOME}/.kube/config
+scripts: 
+   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+   - docker build -t rtxverma123/flaskblog .
+   - docker push rtxverma123/flaskblog
 
-# env:
-# - CHANGE_MINIKUBE_NONE_USER=true
+
+deploy: 
+   provider: elasticbeanstalk
+   region: ap-south-1
+   app: "myexpress-blog"
+   env: "Myexpressblog-env"
+   bucket_name: "elasticbeanstalk-ap-south-1-488435218657"
+   bucket_path: "docker"
+   access_key_id: $ACCESS
+   secret_access_key: $SECRET
+   on: 
+    branch: master
+    
+
+
+
+
+
+
+# Kuberentes Try
+
+
+# # before_install:
+# #   - curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+# #   - chmod +x kubectl && sudo mv kubectl /usr/local/bin/kubectl
+# #   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+# #   - docker build -t rtxverma123/flaskblog .
+# #   - docker push rtxverma123/flaskblog
+  
+# install:
+#   - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+#   - chmod +x ./kubectl
+#   - sudo mv ./kubectl /usr/local/bin/kubectl
+#   - mkdir ${HOME}/.kube
+#   - echo "$KUBE_CONFIG" | base64 --decode > ${HOME}/.kube/config
+
+# # env:
+# # - CHANGE_MINIKUBE_NONE_USER=true
 
 # before_script:
 # - curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
@@ -29,9 +56,6 @@ install:
 # - minikube update-context
 # - JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'; until kubectl get nodes -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do sleep 1; done
 
-scripts: 
-   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-   - docker build -t rtxverma123/flaskblog .
-   - docker push rtxverma123/flaskblog
-   - kubectl apply -f deploy.yml
-   - kubectl apply -f service.yml
+# scripts: 
+#    - kubectl apply -f deploy.yml
+#    - kubectl apply -f service.yml
