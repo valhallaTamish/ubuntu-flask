@@ -32,9 +32,7 @@ deploy:
    DEPLOYMENT_NAME: 'iks-test'
    PORT: '5001'
 
-env: 
-  - Email: 'tamish.verma@tcs.com'
-  - Password: 'Devops12@'
+
   
 scripts: 
     - curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
@@ -42,7 +40,7 @@ scripts:
     - ibmcloud config --check-version=false
     - ibmcloud plugin install -f kubernetes-service
     - ibmcloud plugin install -f container-registry
-    - ibmcloud login -a cloud.ibm.com -r us-south -g Default
+#     - ibmcloud login -a cloud.ibm.com -r us-south -g Default
     - ibmcloud ks cluster config --cluster c3p8us7d0cj2bgr2g73g
     - kubectl config current-context
     - kubectl apply -f deploy.yml
