@@ -24,7 +24,7 @@ scripts:
 #     branch: master
 deploy: 
    IBM_CLOUD_REGION: 'us-south'
-   IBM_CLOUD_API_KEY: "6-z7OxMeu607I5fYNMVtGRZMKRcokeI10THHK6wfU6jd"
+   IBM_CLOUD_API_KEY: "c927b53a-bf8e-4d68-b3e0-ac3979c7554f"
    REGISTRY_HOSTNAME: 'de.icr.io'
    IKS_CLUSTER: 'c3p8us7d0cj2bgr2g73g'
    DEPLOYMENT_NAME: 'iks-test'
