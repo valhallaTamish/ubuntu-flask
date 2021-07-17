@@ -39,8 +39,6 @@ scripts:
     - ibmcloud --version
     - ibmcloud config --check-version=false
     - ibmcloud plugin install -f kubernetes-service
-    - ibmcloud ks cluster config --cluster c3p8us7d0cj2bgr2g73g
-    - kubectl config current-context
     - kubectl apply -f deploy.yml
     - kubectl apply -f service.yml
     
