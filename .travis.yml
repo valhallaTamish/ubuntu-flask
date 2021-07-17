@@ -11,17 +11,37 @@ scripts:
    - docker push rtxverma123/flaskblog
 
 
+# deploy: 
+#    provider: elasticbeanstalk
+#    region: ap-south-1
+#    app: "myexpress-blog"
+#    env: "Myexpressblog-env"
+#    bucket_name: "elasticbeanstalk-ap-south-1-488435218657"
+#    bucket_path: "docker"
+#    access_key_id: $ACCESS
+#    secret_access_key: $SECRET
+#    on: 
+#     branch: master
 deploy: 
-   provider: elasticbeanstalk
-   region: ap-south-1
-   app: "myexpress-blog"
-   env: "Myexpressblog-env"
-   bucket_name: "elasticbeanstalk-ap-south-1-488435218657"
-   bucket_path: "docker"
-   access_key_id: $ACCESS
-   secret_access_key: $SECRET
-   on: 
-    branch: master
+   IBM_CLOUD_REGION: 'us-south'
+   IBM_CLOUD_API_KEY: "6-z7OxMeu607I5fYNMVtGRZMKRcokeI10THHK6wfU6jd"
+   REGISTRY_HOSTNAME: 'de.icr.io'
+   IKS_CLUSTER: 'c3p8us7d0cj2bgr2g73g'
+   DEPLOYMENT_NAME: 'iks-test'
+   PORT: '5001'
+   DEPLOYMENT_NAME: 'iks-test'
+   PORT: '5001'
+   
+scripts: 
+    - curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+    - ibmcloud --version
+    - ibmcloud config --check-version=false
+    - ibmcloud plugin install -f kubernetes-service
+    - ibmcloud plugin install -f container-registry
+    - ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g Default
+    - ibmcloud ks cluster config --cluster "${IKS_CLUSTER}"
+    - ibmcloud ks cluster config --cluster "${IKS_CLUSTER}"
+    - kubectl config current-context
     
 
 
