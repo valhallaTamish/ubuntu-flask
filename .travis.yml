@@ -31,7 +31,11 @@ deploy:
    PORT: '5001'
    DEPLOYMENT_NAME: 'iks-test'
    PORT: '5001'
-   
+
+env: 
+  - Email: 'tamish.verma@tcs.com'
+  - Password: 'Devops12@'
+  
 scripts: 
     - curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
     - ibmcloud --version
