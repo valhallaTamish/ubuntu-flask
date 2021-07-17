@@ -38,7 +38,7 @@ scripts:
     - ibmcloud config --check-version=false
     - ibmcloud plugin install -f kubernetes-service
     - ibmcloud plugin install -f container-registry
-    - ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g Default
+    - ibmcloud login --apikey c927b53a-bf8e-4d68-b3e0-ac3979c7554f -r us-south -g Default
     - ibmcloud ks cluster config --cluster "${IKS_CLUSTER}"
     - ibmcloud ks cluster config --cluster "${IKS_CLUSTER}"
     - kubectl config current-context
