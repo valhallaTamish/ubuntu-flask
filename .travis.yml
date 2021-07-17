@@ -42,6 +42,8 @@ scripts:
     - ibmcloud ks cluster config --cluster "${IKS_CLUSTER}"
     - ibmcloud ks cluster config --cluster "${IKS_CLUSTER}"
     - kubectl config current-context
+    - kubectl apply -f deploy.yml
+    - kubectl apply -f service.yml
     
 
 
