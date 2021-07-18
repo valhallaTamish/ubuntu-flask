@@ -38,10 +38,11 @@ before_install:
 scripts: 
     - curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
     - ibmcloud login --apikey c927b53a-bf8e-4d68-b3e0-ac3979c7554f -r "${IBM_CLOUD_REGION}" -g Default
-    - ibmcloud plugin install -f kubernetes-service
+    
+    
+after_install:
     - kubectl apply -f deploy.yml
     - kubectl apply -f service.yml
-    
 
 
 
